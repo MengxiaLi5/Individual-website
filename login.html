@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>HOME</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="stylesheet" href="./page.css"/>
+    <link rel="stylesheet" href="./app.css"/>
+</head>
+<body>
+
+<header class="jd-topbar">
+    <div class="jd-container" id="jd-header">
+        <h1 class="am-topbar-brand">
+            Engineering
+        </h1>
+        <div class="am-collapse am-topbar-collapse jd-nav" id="doc-topbar-collapse">
+            <ul class="am-nav am-nav-pills am-topbar-nav">
+                <li><a href="./home.html">HOME</a></li>
+                <li><a href="./about.html">ABOUT</a></li>
+                <li><a href="./product.php">PRODUCTS</a></li>
+                <li><a href="./news.html">NEWS</a></li>
+                <li><a href="./contacts.php">CONTACTS</a></li>
+                <li class="am-active"><a href="./login.html">LOGIN</a></li>
+                <li><a href="./connect.php">Co.Info</a> </li>
+                <li><a href="other.php">Other.Co.Info</a></li>
+                <li><a href="private.php">User creation/tab</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<div class="jd-hr">
+    <div class="jd-container">
+        <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
+            <h2 class="am-titlebar-title">Type in your username and password below</h2>
+        </div>
+        <div>
+            <form action = "password.php" method="post">
+                <br/>
+                <table border="0" cellspacing="0" style="height: 90px; width: 123px; font-size: 10px; " >
+                    <tr>
+                        <td colspan="3">
+                            <strong>username: </strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <input size="40" name="USERNAME" style="height: 22px; width: 115px;" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <strong>password: </strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <input size="40" name="PASSWORD" style="height: 22px; width: 115px;" type="password"/>
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1">
+                            <input name="Enter" value="Enter" style="height: 23px; width: 47px;" type="submit"/>
+                        </td>
+                        <td colspan="2">
+                            <input name="NewUser" value="New User" style="height: 23px;" type="submit"/>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<div class="jd-container">
+    <footer data-am-widget="footer" class="am-footer am-footer-default">
+        <div class="am-footer-miscs ">
+            <p>©2018-2019 San Jose State University.</p></br>
+            <p>Mengxia Li for 272 Lab</p>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
