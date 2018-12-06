@@ -11,6 +11,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="stylesheet" href="./page.css"/>
     <link rel="stylesheet" href="./app.css"/>
+    <link rel="stylesheet" href="comment.css"/ >
 </head>
 <body>
 
@@ -42,10 +43,13 @@
         </div>
         <div>
             <?php
+
             $product = (int) $_GET['product'];
+            setcookie("latest",$product);
 
             $expire=time()+60*60*24*30;
 
+            //last five product
             if (isset($_COOKIE["lastfive"]))
             {
                 $arr = $_COOKIE["lastfive"];
@@ -76,6 +80,7 @@
             }
 
 
+            //most five product
             if (isset($_COOKIE["mostfive"]))
             {
                 $arr = $_COOKIE["mostfive"];
@@ -103,13 +108,79 @@
                 setcookie("mostfive", $arrar_string, $expire);
             }
 
+            //show product details
             $con = file("./details.txt");
             echo $con[$product].'<br>';
 
             echo '<img src="image/'.$product.'.png"'.' alt="service image" width="500">';
             echo '<br>';
+            echo '<br>';
+            echo '<br>';
+            echo '<br>';
+
+
+            $dbc = mysqli_connect("db-30bsq7j6s.aliwebs.com", "30bsq7j6s", "30bsq7j6s","30bsq7j6s");
+            if(!$dbc){
+                die("couldn't connect to database");
+            }
+            mysqli_select_db($dbc,"comment");
+
+          //  $productID = $product + 1;
+            $sql = mysqli_query($dbc,"select * from comment WHERE product='$product' ");
+            if ($dbc) {
+                $datarow = mysqli_num_rows($sql);
+            } else {
+                echo "nodata";
+                $datarow = 0;
+            }
+
+
+            for($i=0;$i<$datarow;$i++){
+                $sql_arr = mysqli_fetch_assoc($sql);
+                $id = $sql_arr['user_id'];
+                $rate = $sql_arr['rate'];
+                $comment = $sql_arr['comment'];
+                echo "user id: ";
+                echo "$id";
+                echo '<br>';
+                echo 'Rate: ';
+                echo "$rate";
+                echo '<br>';
+                echo "comment: ";
+                echo "$comment";
+                echo '<br>';
+            }
 
             ?>
+
+
+
+            <form action="sentComment.php" method="post">
+                <div lang="en-US" class="gitment-container gitment-editor-container">
+                    <div class="gitment-editor-main">
+                        <div class="gitment-editor-header">
+                            <nav class="gitment-editor-tabs">
+                                <button class="gitment-editor-tab gitment-selected">edit</button>
+                                <p>Rate please: 5<input type="radio" name="rate" value="5"> 4<input type="radio" name="rate" value="4"> 3<input type="radio" name="rate" value="3"> 2<input type="radio" name="rate" value="2"> 1<input type="radio" name="rate" value="1"></p>
+                            </nav>
+                        </div>
+                        <div class="gitment-editor-body">
+                            <div class="gitment-editor-write-field">
+                                <form action="sentComment.php" method="post">
+                                <textarea placeholder="please write your comment" title="Login to Comment" name="comment"></textarea>
+                                </form>
+                            </div>
+                            <div class="gitment-editor-preview-field gitment-hidden">
+                                <div class="gitment-editor-preview gitment-markdown"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gitment-editor-footer">
+                        <button class="gitment-editor-submit" title="Login to Comment" type="submit" name="submit">submit</button>
+                    </div>
+                </div>
+            </form>
+
         </div>
     </div>
 </div>
