@@ -58,7 +58,7 @@ body, input, textarea, select, button {
 }
 
 a {
-    color: #00C721
+    color: #a06c84
 }
 abbr[title], dfn[title] {
     cursor: help
@@ -313,7 +313,7 @@ pre code {
 
 .am-nav > li.am-active > a, .am-nav > li.am-active > a:hover, .am-nav > li.am-active > a:focus {
     color: #fff;
-    background-color: #00C721;
+    background-color: #a06c84;
     cursor: default
 }
 
@@ -434,7 +434,7 @@ pre code {
     border-width:1px;
     border-style:solid;
     border-color:#ddd;
-    color: #666
+    color: #a06c84
 }
 
 .am-topbar:before, .am-topbar:after {
@@ -447,7 +447,7 @@ pre code {
 }
 
 .am-topbar a {
-    color: #666
+    color: #8c0d40
 }
 
 .am-topbar-brand {
@@ -461,7 +461,7 @@ pre code {
 }
 
 .am-topbar-brand a:hover {
-    color: #4d4d4d
+    color: #8c0d40
 }
 
 .am-topbar-collapse {
@@ -587,13 +587,13 @@ pre code {
     .am-topbar-nav > li.am-active > a, .am-topbar-nav > li.am-active > a:hover,
     .am-topbar-nav > li.am-active > a:focus {
         border-radius: 0;
-        color: #00C721;
+        color: #a06c84;
         background: 0 0
     }
 
     .am-topbar-nav > li.am-active > a:after {
         opacity: 1;
-        border-bottom-color: #00C721
+        border-bottom-color: #a06c84
     }
 }
 
@@ -645,7 +645,7 @@ pre code {
 }
 
 .am-topbar-inverse {
-    background-color: #00C721;
+    background-color: #a06c84;
     border-color: #0b6fa2;
     color: #eee
 }
@@ -754,8 +754,8 @@ pre code {
 .am-pagination > .am-active > span:focus {
     z-index: 2;
     color: #fff;
-    background-color: #00C721;
-    border-color: #00C721;
+    background-color: #a06c84;
+    border-color: #a06c84;
     cursor: default
 }
 
@@ -1344,7 +1344,7 @@ a.am-badge:hover, a.am-badge:focus {
 }
 
 .am-badge-primary {
-    background-color: #00C721
+    background-color: #a06c84
 }
 
 .am-badge-secondary {
@@ -1352,7 +1352,7 @@ a.am-badge:hover, a.am-badge:focus {
 }
 
 .am-badge-success {
-    background-color: #5eb95e
+    background-color: #a06c84
 }
 
 .am-badge-warning {
@@ -1495,7 +1495,7 @@ a.am-badge:hover, a.am-badge:focus {
 }
 
 .am-comment-actions a:hover {
-    color: #00C721;
+    color: #a06c84;
     opacity: 1
 }
 
@@ -1535,19 +1535,19 @@ a.am-badge:hover, a.am-badge:focus {
 }
 
 .am-comment-primary .am-comment-avatar {
-    border-color: #00C721
+    border-color: #a06c84
 }
 
 .am-comment-primary .am-comment-main {
-    border-color: #00C721
+    border-color: #a06c84
 }
 
 .am-comment-primary .am-comment-main:before {
-    border-right-color: #00C721
+    border-right-color: #a06c84
 }
 
 .am-comment-primary.am-comment-flip .am-comment-main:before {
-    border-left-color: #00C721;
+    border-left-color: #a06c84;
     border-right-color: transparent
 }
 
@@ -1579,19 +1579,19 @@ a.am-badge:hover, a.am-badge:focus {
 }
 
 .am-comment-success .am-comment-avatar {
-    border-color: #5eb95e
+    border-color: #a06c84
 }
 
 .am-comment-success .am-comment-main {
-    border-color: #5eb95e
+    border-color: #a06c84
 }
 
 .am-comment-success .am-comment-main:before {
-    border-right-color: #5eb95e
+    border-right-color: #a06c84
 }
 
 .am-comment-success.am-comment-flip .am-comment-main:before {
-    border-left-color: #5eb95e;
+    border-left-color: #a06c84;
     border-right-color: transparent
 }
 
@@ -1997,7 +1997,7 @@ a.am-close:hover {
     left: 2px;
     top: 8px;
     bottom: 8px;
-    border-left: 3px solid #00C721
+    border-left: 3px solid #a06c84
 }
 
 .am-titlebar-default .am-titlebar-nav {
@@ -2017,7 +2017,7 @@ element.style {
     color: #898D97;
 }
 .am-footer-default {
-    background-color: #363b47;
+    background-color: #a06c84;
 }
 .am-footer {
     text-align: center;

@@ -17,7 +17,7 @@
 <header class="jd-topbar">
     <div class="jd-container" id="jd-header">
         <h1 class="am-topbar-brand">
-            Engineering
+            Saphora makeup
         </h1>
         <div class="am-collapse am-topbar-collapse jd-nav" id="doc-topbar-collapse">
             <ul class="am-nav am-nav-pills am-topbar-nav">
@@ -26,10 +26,10 @@
                 <li class="am-active"><a href="./product.php">PRODUCTS</a></li>
                 <li><a href="./news.html">NEWS</a></li>
                 <li><a href="./contacts.php">CONTACTS</a></li>
-                <li><a href="./login.html">LOGIN</a></li>
+                <li><a href="private.php">User creation/tab</a></li>
                 <li><a href="./connect.php">Co.Info</a> </li>
                 <li><a href="other.php">Other.Co.Info</a></li>
-                <li><a href="private.php">User creation/tab</a></li>
+                <li><a href="./login.html">LOGIN</a></li>
             </ul>
         </div>
     </div>
@@ -38,7 +38,7 @@
 <div class="jd-hr">
     <div class="jd-container">
         <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
-            <h2 class="am-titlebar-title">PRODUCTS and SERVICES</h2>
+            <h2 class="am-titlebar-title">PRODUCTS</h2>
         </div>
         <div>
             <?php
@@ -50,7 +50,7 @@
                 for($i = count($array) - 1; $i >= 0; $i--)
                 {
                     $records = $array[$i]+1;
-                    print ('<br><a href="details.php?product='.$array[$i].'">'.'Product and Service'.$records.'</a>');
+                    print ('<br><a href="details.php?product='.$array[$i].'">'.'Product'.$records.'</a>');
                     print ('<br>');
                 }
             }
