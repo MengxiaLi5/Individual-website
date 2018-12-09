@@ -127,9 +127,15 @@
                 die("couldn't connect to database");
             }
             mysqli_select_db($dbc,"comment");
+         //   mysqli_select_db($dbc,"only_one");
+
+//            $user = mysqli_query($dbc,"select * from only_one");
+//            $arr = mysqli_fetch_assoc($user);
+//            $name = $arr['user_name'];
 
           //  $productID = $product + 1;
-            $sql = mysqli_query($dbc,"select * from comment WHERE product='$product' ");
+            $productName = "product ".$product;
+            $sql = mysqli_query($dbc,"select * from comment WHERE product='$productName' ");
             if ($dbc) {
                 $datarow = mysqli_num_rows($sql);
             } else {
@@ -140,11 +146,11 @@
 
             for($i=0;$i<$datarow;$i++){
                 $sql_arr = mysqli_fetch_assoc($sql);
-                $id = $sql_arr['user_id'];
                 $rate = $sql_arr['rate'];
                 $comment = $sql_arr['comment'];
-                echo "user id: ";
-                echo "$id";
+                $name = $sql_arr['user_name'];
+                echo 'User name: ';
+                echo "$name";
                 echo '<br>';
                 echo 'Rate: ';
                 echo "$rate";

@@ -1,3 +1,56 @@
+<?php
+    extract($_POST);
+    if (!isset($username) || !isset($password)) {
+        //from other page
+        echo '<script type="text/javascript">';
+        //localStorage.getItem("loggedIn") === null ||
+        echo 'console.log("check");
+         
+        if (localStorage.getItem("loggedIn") === null || localStorage.getItem("loggedIn") === "false") {
+            window.location.replace("http://supermelody.tech/whole_market.html");
+        }';
+        echo '</script>';
+    } else {
+        $dbc = mysqli_connect("db-30bsq7j6s.aliwebs.com", "30bsq7j6s", "30bsq7j6s","30bsq7j6s");
+        if(!$dbc){
+            die("couldn't connect to database");
+        }
+        mysqli_select_db($dbc,"public_database");
+        $query = "SELECT * FROM public_database
+                   WHERE username = '$username'
+                   AND password  = '$password'";
+        $result = mysqli_query($dbc,$query);
+
+        $row = mysqli_fetch_row($result);
+        if ($row == null) {
+            mysqli_close($dbc);
+            header('location:whole_market.html');
+        } else {
+            echo '<script type="text/javascript">';
+            echo '
+  
+                localStorage.setItem("loggedIn", true);
+                localStorage.setItem("userName","'.$username.'");
+                console.log(localStorage.getItem("userName"));
+            ';
+            echo '</script>';
+            $query = "UPDATE only_one SET user_name = '$username' LIMIT 1 ";
+            mysqli_query($dbc, $query);
+            mysqli_close($dbc);
+
+        }
+    }
+
+
+
+
+
+?>
+
+<script type="text/javascript">
+
+</script>
+
 <!DOCTYPE html>
 <html>
 <title>WHOLE MARKET PLACE</title>
@@ -13,6 +66,13 @@
         color: black;
         line-height: 1.8;
     }
+    .userTrack {
+        text-align: center;
+    }
+    .rowData {
+        margin-right: 2%;
+    }
+
 
     /* Create a Parallax Effect */
     .bgimg-1, .bgimg-2, .bgimg-3 {
@@ -28,17 +88,17 @@
         min-height: 100%;
     }
 
-    /*!* Second image (Portfolio) *!*/
-    /*.bgimg-2 {*/
-        /*background-image: url("/w3images/parallax2.jpg");*/
-        /*min-height: 400px;*/
-    /*}*/
+    /* Second image (Portfolio) */
+    .bgimg-2 {
+        background-image: url("/w3images/parallax2.jpg");
+        min-height: 400px;
+    }
 
-    /*!* Third image (Contact) *!*/
-    /*.bgimg-3 {*/
-        /*background-image: url("/w3images/parallax3.jpg");*/
-        /*min-height: 400px;*/
-    /*}*/
+    /* Third image (Contact) */
+    .bgimg-3 {
+        background-image: url("/w3images/parallax3.jpg");
+        min-height: 400px;
+    }
 
     .w3-wide {letter-spacing: 10px;}
     .w3-hover-opacity {cursor: pointer;}
@@ -97,44 +157,85 @@
 
 <!-- Container (About Section) -->
 <div class="w3-content w3-container w3-padding-64" id="about">
-    <h3 class="w3-center">USER LOGIN</h3>
-    <p class="w3-center"><em>login in please!</em></p>
-    <form action="logged_in.php" target="_blank" method="post">
-        <div class="login">
-            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                <div class="w3-half">
-                    <input class="w3-input w3-border" type="text" placeholder="Username" required name="username">
-                </div>
-            </div>
-            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                <div class="w3-half">
-                    <input class="w3-input w3-border" type="password" placeholder="Password" required name="password">
-                </div>
-            </div>
-            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                <button id="login" class="w3-button w3-black w3-right w3-section" type="submit">
-                    <i class="fa fa-paper-plane"></i> LOGIN IN
-                </button>
-                <div>
-                    <p class="w3-button w3-black w3-right w3-section">
-                        <i class="fa fa-paper-plane"></i><a  style="text-decoration: none" href="register.php"> REGISTER</a>
-                    </p>
-                </div>
-                <!--<button class="w3-button w3-black w3-right w3-section" type="submit">-->
-                    <!--<i class="fa fa-paper-plane"></i> REGISTER-->
-                <!--</button>-->
-            </div>
-        </div>
+    <h3 class="w3-center">LOGGED IN SUCCESSFULLY!<br>
+    <?php
+    $dbc = mysqli_connect("db-30bsq7j6s.aliwebs.com", "30bsq7j6s", "30bsq7j6s","30bsq7j6s");
+    if(!$dbc){
+        die("couldn't connect to database");
+    }
+    $query = "SELECT * FROM user_track ORDER BY track_id DESC";
+    $result = mysqli_query($dbc,$query);
+    $row = mysqli_fetch_row($result);
+    print "current user: ";
+    print $row[1];
+    ?>
+    </h3>
+    <script type="text/javascript">
+        var handleLogout = function() {
+            console.log("hanle out");
+            localStorage.setItem("loggedIn", false);
+            localStorage.setItem("username", "anonymous");
+            window.location = "http://supermelody.tech/handleOut.php";
 
-    </form>
+        }
+    </script>
+    <P class="w3-center"><button onclick="handleLogout().bind(this)">LOG OUT</button></P>
+    <p class="w3-center"><em><a href="shikang.php">Shikang Jin "Cool Company"</a></em></p>
+    <p class="w3-center"><em><a href="Mengxia.php">Mengxia "Fake saphora"</a></em></p>
+    <p class="w3-center"><em><a href="kathy.php">Zixin "Kazeya"</a></em></p>
+    <p class="w3-center"><em><a href="siyun.php">Siyun "Money in the House"</a></em></p>
+    <p class="w3-center"><em><a href="Drew.php">Drew "omicronsix"</a></em></p>
 </div>
 
 
 <!-- Container (Tracking Section) -->
 <div class="w3-content w3-container w3-padding-64" id="portfolio">
     <h3 class="w3-center">TRACKING</h3>
-    <p class="w3-center"><em>Content is visible after logging in<br></em></p><br>
+    <p class="w3-center">
+        <em>
+            <?php
 
+            //mysqli_select_db($dbc,"only_one");
+            $query = "SELECT * FROM user_track ORDER BY track_id DESC LIMIT 10";
+            $result = mysqli_query($dbc,$query);
+            while($row = mysqli_fetch_row($result)) {
+                print("<p class='userTrack'>");
+                print("<span class='rowData'>");
+                print("Time: ");
+                print($row[3]);
+                print("</span>");
+                print("<span class='rowData'>");
+                print("website: ");
+                print($row[2]);
+                print("</span>");
+                print("<span class='rowData'>");
+                print("username: ");
+                print($row[1]);
+                print("</span>");
+                print("</p>");
+            }
+            mysqli_close($dbc);
+            ?>
+            <br>
+        </em>
+    </p><br>
+
+    <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
+    <div class="w3-row-padding w3-center">
+        <div class="w3-col m3">
+        </div>
+
+    </div>
+    <div class="w3-row-padding w3-center">
+        <div class="w3-col m3">
+        </div>
+
+    </div>
+
+    <div class="w3-row-padding w3-center w3-section">
+        <div class="w3-col m3">
+        </div>
+    </div>
     <!--<button class="w3-button w3-padding-large w3-light-grey" style="margin-top:64px">LOAD MORE</button>-->
 </div>
 
@@ -150,38 +251,17 @@
 <!-- Container (Contact Section) -->
 <div class="w3-content w3-container w3-padding-64" id="contact">
     <h3 class="w3-center">TOP FIVE RATE INDIVIDUALLY</h3>
-    <p class="w3-center"><em>Content is visible after logging in<br></em></p><br>
+    <p class="w3-center"><em><a href="shikangjin.php">Shikang Jin "Cool Company"</a></em></p>
+    <p class="w3-center"><em><a href="mengxiali.php">Mengxia "Fake saphora"</a></em></p>
+    <p class="w3-center"><em><a href="zixinli.php">Zixin "Kazeya"</a></em></p>
+    <p class="w3-center"><em><a href="shiyunliang.php">Siyun "Money in the House"</a></em></p>
+    <p class="w3-center"><em><a href="shiyunliang.php">Drew "omicronsix"</a></em></p>
 
     <h3 class="w3-center">WHOLE MARKET TOP FIVE RATE</h3>
-    <p class="w3-center"><em>Content is visible after logging in<br></em></p><br>
-
     <div class="w3-row w3-padding-32 w3-section">
-        <!--<div class="w3-col m4 w3-container">-->
-            <!--<img src="/w3images/map.jpg" class="w3-image w3-round" style="width:100%">-->
-        <!--</div>-->
-        <!--<div class="w3-col m8 w3-panel">-->
-            <!--<div class="w3-large w3-margin-bottom">-->
-                <!--<i class="fa fa-map-marker fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Chicago, US<br>-->
-                <!--<i class="fa fa-phone fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Phone: +00 151515<br>-->
-                <!--<i class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Email: mail@mail.com<br>-->
-            <!--</div>-->
-            <!--<p>Swing by for a cup of <i class="fa fa-coffee"></i>, or leave me a note:</p>-->
-            <!--<form action="/action_page.php" target="_blank">-->
-                <!--<div class="w3-row-padding" style="margin:0 -16px 8px -16px">-->
-                    <!--<div class="w3-half">-->
-                        <!--<input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">-->
-                    <!--</div>-->
-                    <!--<div class="w3-half">-->
-                        <!--<input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">-->
-                <!--<button class="w3-button w3-black w3-right w3-section" type="submit">-->
-                    <!--<i class="fa fa-paper-plane"></i> SEND MESSAGE-->
-                <!--</button>-->
-            <!--</form>-->
-        </div>
+        <p class="w3-center"><em><a href="alltop5.php">top five rating (Click here!)</a></em></p>
     </div>
+</div>
 </div>
 
 <!-- Footer -->
