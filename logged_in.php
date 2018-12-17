@@ -163,11 +163,11 @@
     if(!$dbc){
         die("couldn't connect to database");
     }
-    $query = "SELECT * FROM user_track ORDER BY track_id DESC";
+    $query = "SELECT * FROM only_one";
     $result = mysqli_query($dbc,$query);
     $row = mysqli_fetch_row($result);
     print "current user: ";
-    print $row[1];
+    print $row[0];
     ?>
     </h3>
     <script type="text/javascript">
