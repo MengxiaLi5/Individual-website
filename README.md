@@ -1,2 +1,2 @@
 # Individual-website
-sjsu cmpe272 individual website
+sjsu cmpe272 course project: individual website
